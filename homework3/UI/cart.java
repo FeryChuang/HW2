@@ -17,13 +17,16 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import homework3.prog.product;
+import javax.swing.ButtonGroup;
+import javax.swing.JTextArea;
 
 public class cart extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField id;
 	private JTextField cash;
-	private
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private product p1=null;
 
 	/**
 	 * Launch the application.
@@ -89,7 +92,7 @@ public class cart extends JFrame {
 		dry.setBounds(122, 65, 80, 20);
 		panel_3.add(dry);
 		
-		JLabel lblNewLabel_1 = new JLabel("罐頭 $60");
+		JLabel lblNewLabel_1 = new JLabel("罐頭 $50");
 		lblNewLabel_1.setBounds(32, 95, 80, 20);
 		panel_3.add(lblNewLabel_1);
 		
@@ -98,7 +101,7 @@ public class cart extends JFrame {
 		can.setBounds(122, 95, 80, 20);
 		panel_3.add(can);
 		
-		JLabel lblNewLabel_3 = new JLabel("主食餐包 $45");
+		JLabel lblNewLabel_3 = new JLabel("主食餐包 $40");
 		lblNewLabel_3.setBounds(32, 125, 80, 20);
 		panel_3.add(lblNewLabel_3);
 		
@@ -116,10 +119,12 @@ public class cart extends JFrame {
 		panel_3.add(lblNewLabel_4);
 		
 		JRadioButton payCash = new JRadioButton("現金實付");
+		buttonGroup.add(payCash);
 		payCash.setBounds(32, 224, 80, 20);
 		panel_3.add(payCash);
 		
 		JRadioButton payCredit = new JRadioButton("信用卡 手續費3%");
+		buttonGroup.add(payCredit);
 		payCredit.setBounds(32, 253, 120, 20);
 		panel_3.add(payCredit);
 				
@@ -128,20 +133,34 @@ public class cart extends JFrame {
 		panel_3.add(cash);
 		cash.setColumns(10);
 		
+		JTextArea output = new JTextArea();
+		output.setBounds(32, 329, 347, 180);
+		panel_3.add(output);
+		
 		JButton btnNewButton = new JButton("小結");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				product p1=new product(id.getText()+)
+				boolean PM=true;
+				if(payCash.isSelected()) {PM=true;}					
+				if(payCredit.isSelected()) {PM=false;}
+				p1=new product(id.getText(),member.isSelected(),((int)dry.getValue()),((int)can.getValue()),((int)bag.getValue()),PM);
+				output.setText(p1.output());
 			}
 		});
 		btnNewButton.setBounds(32, 292, 87, 23);
 		panel_3.add(btnNewButton);
 		
 		JButton btnNewButton_2 = new JButton("付款");
+		btnNewButton_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		btnNewButton_2.setBounds(129, 292, 87, 23);
 		panel_3.add(btnNewButton_2);
+		
+		
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("訂單", null, panel_1, null);
