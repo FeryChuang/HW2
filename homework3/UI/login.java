@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
+import javax.swing.ImageIcon;
 
 public class login extends JFrame {
 
@@ -42,7 +43,7 @@ public class login extends JFrame {
 	 */
 	public login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 700);
+		setBounds(450, 150, 450, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -60,34 +61,28 @@ public class login extends JFrame {
 		panel.add(lblNewLabel_2);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 85, 414, 250);
+		panel_1.setBounds(10, 85, 414, 566);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("帳號");
 		lblNewLabel.setFont(new Font("微軟正黑體", Font.PLAIN, 18));
-		lblNewLabel.setBounds(101, 50, 45, 30);
+		lblNewLabel.setBounds(186, 24, 45, 30);
 		panel_1.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("密碼");
 		lblNewLabel_1.setFont(new Font("微軟正黑體", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(101, 108, 45, 30);
+		lblNewLabel_1.setBounds(186, 82, 45, 30);
 		panel_1.add(lblNewLabel_1);
 		
 		ID = new JTextField();
-		ID.setBounds(156, 50, 96, 30);
+		ID.setBounds(241, 24, 96, 30);
 		panel_1.add(ID);
 		ID.setColumns(10);
 		
 		PW = new JPasswordField();
-		PW.setBounds(156, 108, 96, 30);
+		PW.setBounds(241, 82, 96, 30);
 		panel_1.add(PW);
-		
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(10, 345, 414, 306);
-		contentPane.add(panel_2);
-		panel_2.setLayout(null);
 		
 		JButton btnNewButton = new JButton("忘記密碼");
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -97,7 +92,7 @@ public class login extends JFrame {
 				f1.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(101, 180, 85, 30);
+		btnNewButton.setBounds(186, 154, 85, 30);
 		panel_1.add(btnNewButton);
 		
 		JButton signIn = new JButton("登入");
@@ -113,7 +108,7 @@ public class login extends JFrame {
 					PWC=false;
 				}
 				
-				if(ID.getText().equals("BB123")&& PWC==true){
+				if(ID.getText().equals("bb")&& PWC==true){
 					cart C1=new cart();
 					C1.setVisible(true);
 					dispose();
@@ -123,8 +118,13 @@ public class login extends JFrame {
 				}
 			}
 		});
-		signIn.setBounds(212, 180, 85, 30);
+		signIn.setBounds(297, 154, 85, 30);
 		panel_1.add(signIn);
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setIcon(new ImageIcon(login.class.getResource("/homework3/img/catCart2.jpg")));
+		lblNewLabel_3.setBounds(10, 10, 394, 546);
+		panel_1.add(lblNewLabel_3);
 		
 		
 	}

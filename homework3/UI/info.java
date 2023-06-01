@@ -38,14 +38,14 @@ public class info extends JFrame {
 	 */
 	public info() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(150, 150, 250, 150);
+		setBounds(500, 200, 250, 150);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("帳號：BB123");
+		JLabel lblNewLabel = new JLabel("帳號：bb");
 		lblNewLabel.setFont(new Font("微軟正黑體", Font.PLAIN, 18));
 		lblNewLabel.setBounds(43, 10, 148, 25);
 		contentPane.add(lblNewLabel);
