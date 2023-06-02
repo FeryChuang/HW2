@@ -107,7 +107,7 @@ public class cart extends JFrame {
 		
 		JLabel lblNewLabel_3 = new JLabel("現金實付");
 		lblNewLabel_3.setFont(new Font("微軟正黑體", Font.PLAIN, 12));
-		lblNewLabel_3.setBounds(46, 292, 54, 20);
+		lblNewLabel_3.setBounds(193, 286, 54, 20);
 		panel_3.add(lblNewLabel_3);
 		
 		
@@ -136,7 +136,7 @@ public class cart extends JFrame {
 		dry.setBounds(118, 144, 80, 20);
 		contentPane.add(dry);
 		
-		JLabel lblNewLabel_1 = new JLabel("罐頭 $50");
+		JLabel lblNewLabel_1 = new JLabel("點心罐 $50");
 		lblNewLabel_1.setFont(new Font("微軟正黑體", Font.PLAIN, 12));
 		lblNewLabel_1.setBounds(28, 174, 80, 20);
 		contentPane.add(lblNewLabel_1);
@@ -186,14 +186,14 @@ public class cart extends JFrame {
 		});
 		scrollPane_1.setViewportView(table);
 		model =new DefaultTableModel();
-		Object[] column= {"ID","乾飼料","罐頭","總金額"};
+		Object[] column= {"會員ID","乾飼料","點心罐","總金額"};
 		Object[] row=new Object[4];
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 				
 		
 		cash = new JTextField();
-		cash.setBounds(41, 315, 80, 20);
+		cash.setBounds(188, 309, 80, 20);
 		panel_3.add(cash);
 		cash.setColumns(10);
 		
@@ -226,61 +226,56 @@ public class cart extends JFrame {
 		btnNewButton.setBounds(298, 10, 80, 25);
 		panel_3.add(btnNewButton);
 		
-		JButton btnNewButton_2 = new JButton("現金結帳");
+		JButton btnNewButton_2 = new JButton("結帳");
 		btnNewButton_2.setFont(new Font("微軟正黑體", Font.PLAIN, 12));
 		btnNewButton_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (cash.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "請輸入現金");
-				}else if (payCash.isSelected()==true){
-				int CO=Integer.parseInt(cash.getText());
-				int CC=CO-p1.getSum();
-				int C1=CC/100;
-				int C2=(CC-C1*100)/10;
-				int C3=((CC-C1*100)-C2*10)/5;
-				int C4=(((CC-C1*100)-C2*10))-C3*5;
-				output.setText(p1.output()+"\n\t\t找零"+"\t"+CC+
-						"\n\t\t\t100元"+C1+"張"+
-						"\n\t\t\t10元"+C2+"枚"+
-						"\n\t\t\t5元"+C3+"枚"+
-						"\n\t\t\t1元"+C4+"枚"				
-						);
-				row[0]=id.getText();
-				row[1]=dry.getValue();
-				row[2]=can.getValue();
-				row[3]=p1.getSum();
-				model.addRow(row);
+				if(payCredit.isSelected()==true) {
+					row[0]=id.getText();
+					row[1]=dry.getValue();
+					row[2]=can.getValue();
+					row[3]=p1.getSum();
+					model.addRow(row);
+					
+					id.setText("");
+					dry.setValue(0);
+					can.setValue(0);
+					cash.setText("");
+					JOptionPane.showMessageDialog(null, "訂購成功!");
+				}else{				
+					if (cash.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "請輸入現金");
+					}else if((Integer.parseInt(cash.getText()))<p1.getSum()){
+						JOptionPane.showMessageDialog(null, "付款現金不足");
+					}else{										
+						int CO=Integer.parseInt(cash.getText());
+						int CC=CO-p1.getSum();
+						int C1=CC/100;
+						int C2=(CC-C1*100)/10;
+						int C3=((CC-C1*100)-C2*10)/5;
+						int C4=(((CC-C1*100)-C2*10))-C3*5;
+						output.setText(p1.output()+"\n\t\t找零"+"\t"+CC+
+								"\n\n\t\t\t100元"+C1+"張"+
+								"\n\t\t\t10元"+C2+"枚"+
+								"\n\t\t\t5元"+C3+"枚"+
+								"\n\t\t\t1元"+C4+"枚");
+						
+						row[0]=id.getText();
+						row[1]=dry.getValue();
+						row[2]=can.getValue();
+						row[3]=p1.getSum();
+						model.addRow(row);
 				
-				id.setText("");
-				dry.setValue(0);
-				can.setValue(0);
-				cash.setText("");
-				JOptionPane.showMessageDialog(null, "訂購成功!");
-			}}
-		});
-		btnNewButton_2.setBounds(131, 313, 100, 25);
+						id.setText("");
+						dry.setValue(0);
+						can.setValue(0);
+						cash.setText("");
+						JOptionPane.showMessageDialog(null, "訂購成功!");
+					}}}	
+			});
+		btnNewButton_2.setBounds(278, 307, 100, 25);
 		panel_3.add(btnNewButton_2);
-		
-		JButton btnNewButton_1 = new JButton("信用卡結帳");
-		btnNewButton_1.setFont(new Font("微軟正黑體", Font.PLAIN, 12));
-		btnNewButton_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				row[0]=id.getText();
-				row[1]=dry.getValue();
-				row[2]=can.getValue();
-				row[3]=p1.getSum();
-				model.addRow(row);
-				
-				id.setText("");
-				dry.setValue(0);
-				can.setValue(0);
-				JOptionPane.showMessageDialog(null, "訂購成功!");
-			}
-		});
-		btnNewButton_1.setBounds(241, 313, 100, 25);
-		panel_3.add(btnNewButton_1);
 		
 		JButton btnNewButton_6 = new JButton("列印明細");
 		btnNewButton_6.addMouseListener(new MouseAdapter() {
@@ -293,7 +288,7 @@ public class cart extends JFrame {
 				}
 			}
 		});
-		btnNewButton_6.setBounds(301, 358, 100, 25);
+		btnNewButton_6.setBounds(30, 307, 100, 25);
 		panel_3.add(btnNewButton_6);
 		
 		
@@ -304,7 +299,7 @@ public class cart extends JFrame {
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(id.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "請輸入會員名稱");
+					JOptionPane.showMessageDialog(null, "請選擇一筆訂單");
 				}else{
 					boolean PM=true;
 					if(payCash.isSelected()) {PM=true;}					
@@ -318,6 +313,7 @@ public class cart extends JFrame {
 						model.setValueAt(can.getValue(), i, 2);
 						model.setValueAt(p1.getSum(), i, 3);
 					}
+					JOptionPane.showMessageDialog(null, "修改成功!");
 				}
 			}
 		});
@@ -350,7 +346,7 @@ public class cart extends JFrame {
 				System.exit(0);
 			}
 		});
-		btnNewButton_5.setBounds(337, 628, 80, 25);
+		btnNewButton_5.setBounds(344, 622, 80, 25);
 		contentPane.add(btnNewButton_5);
 		
 		clock = new JLabel("");

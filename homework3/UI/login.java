@@ -85,6 +85,7 @@ public class login extends JFrame {
 		panel_1.add(PW);
 		
 		JButton btnNewButton = new JButton("忘記密碼");
+		btnNewButton.setFont(new Font("微軟正黑體", Font.PLAIN, 12));
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -96,6 +97,7 @@ public class login extends JFrame {
 		panel_1.add(btnNewButton);
 		
 		JButton signIn = new JButton("登入");
+		signIn.setFont(new Font("微軟正黑體", Font.PLAIN, 12));
 		signIn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -121,10 +123,23 @@ public class login extends JFrame {
 		signIn.setBounds(297, 154, 85, 30);
 		panel_1.add(signIn);
 		
+		JButton btnNewButton_1 = new JButton("離開");
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+		});
+		btnNewButton_1.setFont(new Font("微軟正黑體", Font.PLAIN, 12));
+		btnNewButton_1.setBounds(297, 206, 85, 30);
+		panel_1.add(btnNewButton_1);
+		
+		
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon(login.class.getResource("/homework3/img/catCart2.jpg")));
 		lblNewLabel_3.setBounds(10, 10, 394, 546);
 		panel_1.add(lblNewLabel_3);
+		
 		
 		
 	}
